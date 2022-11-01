@@ -5,26 +5,29 @@ import { client } from "./../../../infra/prisma/client";
 
 @injectable()
 export class createProductService {
-  async execute({ code, name, price, quantity }: IRequest) {
+  async execute({ products}: IRequest) {
     try {
-      if (!code) throw new HttpError("preencha o campo code bar");
-      if (!name) throw new HttpError("preencha o campo  nome ");
-      if (!price) throw new HttpError("o preencha o campo preço");
-      if (!quantity) throw new HttpError("preencha o campo quantidade");
-
-      // const checkHasName = await client.products.findUnique({where:{}})
       
-      const result = await client.products.create({
-        data:{
-          code:code,
-          name:name,
-          price:price,
-          quantity:quantity
+      if (products.length === 0) throw new HttpError("arquivo vazio");
 
-        }
-      });
+      const prod = products.slice(1)
+      for await (let{code,name, date,quantity, price} of prod){
+     
+        
+        await client.products.create({
+          data: {
+            code: code,
+            name: name,
+            quantity: Number(quantity),
+            createdAt: new Date(date),
+            price: price,
+          },
+          
+        });
 
-      return result;
+      }
+     
+      
     } catch (err) {
       console.log(err);
 

@@ -8,13 +8,13 @@ datasource db {
 }
 
 model Products {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   code      String
   name      String
   price     Float
   quantity  Int
-  createdAt DateTime @default(now()) @db.Timestamptz(6)
-  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+  createdAt DateTime?
+  updatedAt DateTime  @default(now()) @updatedAt @db.Timestamptz(6)
   Sales     Sales[]
 }
 
