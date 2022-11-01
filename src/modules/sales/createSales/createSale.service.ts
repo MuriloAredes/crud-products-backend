@@ -21,7 +21,7 @@ export class createSaleService {
         throw new HttpError("Quantidade insulficiente em estoque");
 
       const totalprice = quantity * checkHasProduct.price;
-      
+       
      
       
       const quantityProd = checkHasProduct.quantity - quantity ;
