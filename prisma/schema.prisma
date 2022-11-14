@@ -27,3 +27,22 @@ model Sales {
   updatedAt   DateTime @default(now()) @updatedAt @db.Timestamptz(6)
   products    Products @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
+
+model Users{
+  id          int       @id @default(autoincrement())
+  name        string  
+  sobrenome   string  
+  phone       string
+  account_type                   UsersAccounType @default(USER)
+  recovery_pwd_token             String?         @db.VarChar(255)
+  recovery_pwd_validity          DateTime?       @db.Timestamptz(6)
+  blocked_access                 Boolean         @default(false)
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+}
+
+enum UsersAccounType {
+  USER
+  ASSISTENT
+  ADMIN
+}
