@@ -29,7 +29,7 @@ model Sales {
 }
 
 model Users{
-  id          int       @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        string  
   sobrenome   string  
   phone       string
