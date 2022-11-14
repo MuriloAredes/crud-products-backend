@@ -2,7 +2,7 @@ FROM node:alpine
 
 LABEL version ="1.0" description ="node-image"
 
-WORKDIR /usr/app
+WORKDIR /app
 
 COPY  package*.json ./
 
