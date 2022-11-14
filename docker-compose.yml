@@ -2,20 +2,23 @@ version: "3.9"
 
 services:
   app:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
     container_name: "api-server"
     command: sh -c "npm run migrate && npm start"
-    ports: 3000:3000
+    ports: 
+    - "3000:3000"
     volumes:
     - .:/usr/app
     links:
-    - db
+    - "DB"
     depends_on:
-    - db
+    - "DB"
     environment:
-      - DB_HOST: host.docker.internal
-      - DB_USER: postgres
-      - DB_PASS: postgres
+      - DB_HOST=host.docker.internal
+      - DB_USER=postgres
+      - DB_PASS=postgres
   DB:
     image: postgres:alpine
     container_name: api-db
