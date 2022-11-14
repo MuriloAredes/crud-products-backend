@@ -29,16 +29,16 @@ model Sales {
 }
 
 model Users{
-  id          Int       @id @default(autoincrement())
-  name        string  
-  sobrenome   string  
-  phone       string
+  id                             Int       @id @default(autoincrement())
+  name                           String  
+  sobrenome                      String  
+  phone                          String
   account_type                   UsersAccounType @default(USER)
   recovery_pwd_token             String?         @db.VarChar(255)
   recovery_pwd_validity          DateTime?       @db.Timestamptz(6)
   blocked_access                 Boolean         @default(false)
-  createdAt   DateTime @default(now()) @db.Timestamptz(6)
-  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+  createdAt                      DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt                      DateTime @default(now()) @updatedAt @db.Timestamptz(6)
 }
 
 enum UsersAccounType {
